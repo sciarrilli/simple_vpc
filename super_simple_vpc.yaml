@@ -1,0 +1,31 @@
+---
+AWSTemplateFormatVersion: '2010-09-09'
+Description: NET335 reInvent 2019
+Resources:
+  myVPC:
+    Type: AWS::EC2::VPC
+    Properties: 
+      CidrBlock: 10.0.0.0/16
+      Tags:
+        - Key: Name
+          Value: cloudformation-vpc
+
+  mySUBNET:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone: us-east-1a
+      CidrBlock: 10.0.0.0/24
+      VpcId: !Ref myVPC
+
+Outputs:
+  myVPC:
+    Description: NET335 VPC
+    Value: !Ref myVPC
+    Export:
+      Name: !Sub "${AWS::StackName}-VPCID"
+  
+  mySUBNET:
+     Description: Net335 Subnet
+     Value: !Ref mySUBNET
+     Export:
+       Name: !Sub "${AWS::StackName}-SUBNET"
