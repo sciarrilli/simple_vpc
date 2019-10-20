@@ -1,0 +1,17 @@
+global:
+  owner: nsciarrilli@gmail.com
+  qsname: simple_vpc
+  #s3bucket: projectx-templates <- (Optional) Only needed if you want to use a specific bucket
+  regions:
+    - us-east-1
+    - us-west-2
+tests:
+  # The following test will test in both us-west-2 and us-east-1 using sample-cloudformation-input.json as inputs
+  scenario-1:
+    regions:
+      - us-west-2
+      - us-east-1
+    template_file: super_simple_vpc.template
+  # The following test will test in both all 4 region defined in the global region section using sample-cloudformation-input.json as inputs
+  scenario-all-regions:
+    template_file: super_simple_vpc.template
